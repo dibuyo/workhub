@@ -35,7 +35,7 @@ jobs:
       - run: npm run typecheck -w @workhub/protocol -w @workhub/relay
       - run: npx vitest run --project protocol --project relay
       - run: npm run build:web -w @workhub/app
-      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -44,7 +44,7 @@ jobs:
       - run: echo "IMAGE=ghcr.io/${OWNER,,}/workhub-relay" >> "$GITHUB_ENV"
         env:
           OWNER: ${{ github.repository_owner }}
-      - uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           file: packages/relay/Dockerfile
